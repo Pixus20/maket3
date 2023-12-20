@@ -26,7 +26,7 @@ html,body{
     background-color: #f8f8f8;
     display: flex;
     justify-content: center;
-
+    z-index: 4;
 }
 .document_header_content{
     display: flex;
@@ -71,12 +71,9 @@ html,body{
     display: flex;
     justify-content: center;
     padding:20px;
-
 }
 .main_menu_nav{
     width: 1000px;
-  
-
 }
 .main_menu_nav_ul{  
     display: flex;
@@ -111,7 +108,7 @@ html,body{
     justify-content: start;
     width: 50px;
     height: 25px;
-    right: 50%;
+   
 }
 .menu_burger span{
     height: 2px;
@@ -147,6 +144,12 @@ html,body{
     bottom: 50%;
     transform: rotate(45deg) translate(0, 50%);
 }
+/*слайдер*/
+.main_slider{
+    height: 400px;
+    
+}
+
 
 /*футер */
 .document_footer{
@@ -172,21 +175,22 @@ html,body{
     .main_menu_nav{
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items:center;
+        position: sticky;
     }
     .main_menu_nav_ul{
       display: none;
         flex-direction: column;
         align-items: flex-start;
-        position: fixed;
+        position: sticky;
         justify-content: flex-start;
         height: 100%;
         width: 100%;
-        top: 37%;bottom: 0;left: 0;right: 0;
-        z-index: 50;
+        top: 36%;bottom: 0;left: 0;right: 0;
+        z-index: 3;
         overflow-y: auto;
         padding: 50px 40px;
-        background-color: #141414;
+        background-color: #777777;
         animation: burgerAnimation 0.4s;  
         transition: all 1s;
         row-gap: 20px;
