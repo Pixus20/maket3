@@ -189,10 +189,39 @@ html,body{
 /*футер */
 .document_footer{
     background-color:#777777 ;
-    height: 100px;
+    color:#fcfcfc ;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer_content{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 980px;
+    margin: 0 20px;
 }
 
+.footer_content_center ul{
+    list-style-type:none;
+     text-decoration: underline;
+    
+}
+.footer_content_center  li{
+     cursor: pointer;
+}
 
+.footer_content_right{
+    display: flex;
+}
+.footer_content_right img{
+    height: 50px;
+    width: 40px;
+}
+.footer_content_right p>a{
+    color: #fcfcfc;
+}
 /* адаптив*/
 @media screen and (max-width:800px) {
     /*хедер*/
@@ -253,7 +282,27 @@ html,body{
     .slide{
         height: 300px;
     }
+   
+
 }
+@media screen and (max-width:650px) {
+    /*футер*/
+    .footer_content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer_content_left p{
+        text-align:center;
+    }
+    .footer_content_center{
+        padding: 0 20px;
+    }
+    .footer_content_right p{
+        text-align: left;
+    }
+}
+
 @media screen and (max-width:400px) {
     /* слайдер*/
     .slide{
