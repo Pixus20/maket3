@@ -1,32 +1,24 @@
+/*форма*/
+document.getElementById('open_form').addEventListener('click', function(){
+    var form=document.getElementById('form_all');
+    var overlay=document.getElementById('overlay');
+    form.style.display =(form.style.display === 'flex')? 'none' : 'flex';
+    overlay.style.display =(overlay.style.display === 'flex')? 'none': 'flex';
+});
+
+document.getElementById('form_close').addEventListener('click', function(){
+    var close=document.getElementById('form_all');
+    var overlay=document.getElementById('overlay');
+    close.style.display=(close.style.display === 'none')? 'flex' : 'none';
+    overlay.style.display =(overlay.style.display === 'none')? 'flex': 'none';
+});
+
+
 /* бургер*/ 
 document.querySelector('.menu_burger').addEventListener('click',function(){
     this.classList.toggle('active');
     document.querySelector('.main_menu_nav_ul').classList.toggle('open');
     }) 
-/* слайдер без бібліотеки
-document.addEventListener('DOMContentLoaded', function () {
-    const sliderLine = document.querySelector('.slider__line');
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.querySelector('.slider__btn-prev');
-    const nextBtn = document.querySelector('.slider__btn-next');
-    let currentIndex = 0;
-    function showSlide(index) {
-        slides.forEach((slide) => {
-            slide.style.transform = `translateX(-${index * 100}%)`;
-        });
-    }
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    }
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(currentIndex);
-    }
-    setInterval(nextSlide, 4000); 
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-});*/
 
 /* слайдер з бібліотеки*/ 
 $('.slider').slick({
