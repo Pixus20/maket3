@@ -531,9 +531,13 @@ header{
     align-items: flex-start;
     justify-content: space-between;
     width: 980px;
-    margin: 2% 2%;
+    margin: 2%;
 }
-
+.footer_content_left a{
+    color:#fcfcfc ;
+    text-decoration: none;
+    cursor: pointer;
+}
 .footer_content_center ul{
     list-style-type:none;
      text-decoration: underline;
