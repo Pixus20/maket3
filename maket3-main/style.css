@@ -10,7 +10,7 @@
 .open{
     display: flex !important;
 }
-/*приземлення футера*/
+/*down footer*/
 html,body{
     height: 100%;
 }
@@ -22,19 +22,20 @@ html,body{
 .document_main{
     flex-grow: 1;
 }
-/* хедер ліво*/
+/*header*/
 header{
     position: sticky;
 }
 .document_header{
     background-color: #f8f8f8;
     display: flex;
-    justify-content: center;
     position: sticky;
 }
 .document_header_content{
     display: flex;
     align-items: center;
+        justify-content: space-between;
+
     width: 980px;
     padding: 50px 10px ;
 }
@@ -57,11 +58,11 @@ header{
 .header_logo_block_text p{
     color: #767676;
 }
-/*хедер право*/
+
 .header_contacts_block{
     text-align: right;
     position: relative;
-    width: 705px;
+
     right: 0;
 }
 .header_contacts_block ul{
@@ -86,7 +87,7 @@ header{
     cursor:pointer;
 }
 
-/*форма*/
+/*form*/
 .header_form{
     display: flex;
     flex-direction: column;
@@ -107,7 +108,7 @@ header{
     
 }
 #form_all{
-    height: 600px;
+    height: 650px;
     width: 485px;
     display: none;
     flex-direction: column;
@@ -135,7 +136,7 @@ header{
 }
 #form{
     width: 465px;
-    height: 580px;
+    height: 630px;
     background: #ffffff;
     display: flex;
     flex-direction: column;
@@ -151,7 +152,7 @@ header{
     font-size: 14px;
     color: #717171;
 }
-#form input:not(:last-of-type){
+#form input{
     width: 340px;
     height: 40px;
     margin-top: 5px;
@@ -160,20 +161,8 @@ header{
     border:1px solid #717171;
     color: #717171;
 }     
-#form input:not(:last-of-type):focus{
-    outline:none;
-}
-#form_email{
-    width: 340px;
-    height: 40px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    color: red;
-    padding:0 10px;
-    border: 1px  solid red;
-    box-shadow: inset 0 0 10px red;
-}
-#form_email:focus{
+
+#form__email:focus{
     box-shadow: none;
     color: #717171;
 }
@@ -196,7 +185,7 @@ header{
     font-weight: 900;
     cursor: pointer;
 }
-/*меню */
+/*menu*/
 .main_menu{
     background-color:#777777;
     display: flex;
@@ -230,7 +219,7 @@ header{
     cursor: pointer;
     text-decoration: underline;
 }
-/*бургер*/
+/*menu burger*/
 .menu_burger{
     display: none;
     position: relative;
@@ -274,7 +263,7 @@ header{
     bottom: 50%;
     transform: rotate(45deg) translate(0, 50%);
 }
-/*слайдер*/
+/*slider*/
 .slider_content {
     position: relative;
     margin: 0;
@@ -317,7 +306,7 @@ header{
     border: none;
     cursor: pointer;
 }
-/*контент*/
+/*content*/
 .main_content{
     display: flex;
     flex-direction: column;
@@ -517,7 +506,7 @@ header{
     height: 35px;
     width: 35px;
 }
-/*футер */
+/*footer */
 .document_footer{
     background-color:#777777 ;
     color:#fcfcfc ;
@@ -553,16 +542,15 @@ header{
 .footer_content_right img{
     height: 50px;
     width: 40px;
+    margin-right: 10px;
 }
 .footer_content_right p>a{
     color: #fcfcfc;
 }
 
-/* адаптив*/
+/* adaptive*/
 
-@media screen and (max-width:1000px){
-    
-    /*хедер*/
+@media screen and (max-width:1000px){      
     .document_header_content{
         display: flex;
        justify-content: center;
@@ -571,7 +559,6 @@ header{
     .header_contacts_block{
         width: auto;
     }
-    /*слайдер*/
     .slider_content{
         height: 300px;
         width: auto;
@@ -579,11 +566,9 @@ header{
     .slider_btn{
         display: none;
     }
-    /*меню*/
     .main_menu_nav_ul{
         width: auto;
     }
-    /* контент*/
     .main_content{
         top: 5%;          
         display: flex;
@@ -631,8 +616,6 @@ header{
 }
 
 @media screen and (max-width:800px) {
-    
-    /*бургер*/
     .menu_burger {
         display: flex;
         justify-content: start;
@@ -669,18 +652,13 @@ header{
         to{opacity: 1;
             transform: translateX(20px);
         }
-    }
-    
+    }    
     .main_menu_nav_ul li{
         border:none;
     }
-    /*слайдер*/
     .slider_content{
         height: 300px;
     }
-    
-   /*контент*/
-  
     .content_breadcrumbs{
     left: 5%;
    }
@@ -715,14 +693,12 @@ header{
     margin:2% 0;
     }
 }
-@media screen and (max-width:650px) {
-    /*хедер*/
+@media screen and (max-width:650px) {  
     .document_header_content{
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    /*форма*/
+    } 
     #form_all{
         margin-top: 15%;
         width: 380px;
@@ -739,19 +715,16 @@ header{
     }
     #form textarea{
         width: 300px;
-    }
-    /* бургер*/
+    }  
      .menu_burger {
         cursor: pointer;
     }
     .main_menu_nav_ul{
         margin-top: 5%;
-    }
-    /*слайдер*/
+    }   
     .slider_btn{
         display: none;
-    }
-    /*контент*/
+    } 
     .content{
         display: flex;
         flex-direction: column;
@@ -772,9 +745,7 @@ header{
     .content_right_goods{
         width: 550px;
         justify-content: center;
-
     }
-    /*футер*/
     .footer_content{
         display: flex;
         flex-direction: column;
@@ -790,8 +761,7 @@ header{
         text-align: left;
     }
 }
-@media screen and (max-width:550px) {
-    /*контент*/
+@media screen and (max-width:550px) {   
     .content_left{
         display:flex;
         flex-direction: column;
@@ -818,21 +788,18 @@ header{
         width: 260px;
         justify-content:center;
        }
-       /*бургер*/
        .main_menu_nav_ul{
         margin-top: 7%;
         padding-top: 10px;
        }
 }
 @media screen and (max-width:500px) {
-    /*бургер*/
     .main_menu_nav_ul{
         margin-top: 7%;
         padding-top: 10px;
        }
 }
 @media screen and (max-width:450px) {
-    /*форма*/
     #form_all{
         margin-top: 15%;
         width: 300px;
@@ -856,17 +823,14 @@ header{
     #form textarea{
         width: 250px;
     }
-    /* бургер*/
      .menu_burger {
         cursor: pointer;
     }
-    /*бургер*/
     .main_menu_nav_ul{
         top: 45%;
         margin-top: 7%;
         padding-top: 10px;
     }
-    /* слайдер*/
     .slider_content{
         height: 200px;
     }
@@ -874,7 +838,6 @@ header{
         position: relative;
         display: none;
     }
-    /*контент*/
     .content_right_line{
         width: 400px;
     }
@@ -884,17 +847,14 @@ header{
     }
 }
 @media screen and (max-width:400px ){
-    /* бургер*/
     .menu_burger {
         cursor: pointer;
     }
-     /*бургер*/
      .main_menu_nav_ul{
         top: 55%;
         margin-top: 10%;
         padding-top: 10px;
     }
-    /*контент*/
     .main_content{
         width: auto;
     }
@@ -919,12 +879,9 @@ header{
     }
     .content_right_text p{
         width: 250px;
-    }
-    
-
+    }    
 }
 @media screen and (max-width:350px ){
-    /*форма*/
     #form_all{
         margin-top: 15%;
         width: 250px;
@@ -953,28 +910,23 @@ header{
         width: 200px;
         height: 25px;
         font-size: 12px;
-
     }
     #form textarea{
         width: 200px;
         height: 30px;
         font-size: 12px;
-
     }
     #form button{
         margin-bottom: 25px;
     }
-    /* бургер*/
     .menu_burger {
         cursor: pointer;
     }
-    /*бургер*/
     .main_menu_nav_ul{
     top: 65%;
     margin-top: 7%;
     padding-top: 10px;
     }
-       /*контент*/
     .content_right_line{
         width: 300px;
     }
@@ -987,11 +939,9 @@ header{
     }
 }
 @media screen and (max-width:320px){
-    /*форма*/
       #form textarea{
         padding-top: 5px;
     }
-    /*бургер*/
      .main_menu_nav_ul{
         top: 70%;
         margin-top: 10%;
