@@ -89,6 +89,21 @@ $('.slider_btn-next').click(function(){
     $('.slider').slick('slickNext');
 });
 
+//DropDpwn list
+var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+document.querySelectorAll('.content__left_itm').forEach(function(item) {
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.scrollTo(0, scrollPosition);
+        this.classList.toggle('active');
+        var dropdownList = this.querySelector('.content__dropdown__list');
+        if (dropdownList) {
+            dropdownList.classList.toggle('open_list');
+        }
+    });
+});
+
 
 //valid
 var form = document.getElementById('form');
@@ -102,10 +117,6 @@ form.addEventListener('submit', function(event) {
         event.preventDefault(); 
     }    
 });
-
-var form = document.getElementById('form');
-var phoneInput = document.getElementById('form__number');
-var nameInput = document.getElementById('form__text');
 
 phoneInput.addEventListener('input', function(event) {
     var inputValue = event.target.value;

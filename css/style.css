@@ -7,6 +7,11 @@
     font-size: 14px;  
 
 }
+.open_list{
+    display: flex ;
+    flex-direction: column;
+    align-items: start;
+}
 .open{
     display: flex !important;
 }
