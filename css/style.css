@@ -99,7 +99,7 @@ header{
     align-items: center;
     background:#f8f8f8 ;
 }
-#overlay{
+#form_overlay{
     position: fixed;
     display: none;
     z-index: 5;
@@ -227,7 +227,7 @@ header{
     text-decoration: underline;
 }
 /*menu burger*/
-.menu_burger{
+.burger{
     display: none;
     position: relative;
     align-items: center;
@@ -236,7 +236,7 @@ header{
     height: 35px;
     z-index: 4;
 }
-.menu_burger span{
+.burger span{
     height: 2px;
     width: 100%;
     transform: scale(1);
@@ -245,7 +245,7 @@ header{
     flex-direction: column;
     align-items: flex-start;
 }
-.menu_burger::before, .menu_burger::after{
+.burger::before, .burger::after{
     content: '';
     position: absolute;
     height: 2px;
@@ -253,20 +253,20 @@ header{
     background-color: #fcfcfc;
     transition: all 0.3s ease 0s;
 }
-.menu_burger::before{
+.burger::before{
     top: 0; 
 }
-.menu_burger::after{
+.burger::after{
     bottom: 0;
 }
-.menu_burger.active span{
+.burger.active span{
     transform: scale(0);
 }
-.menu_burger.active::before{
+.burger.active::before{
     top: 50%;
     transform:rotate(-45deg) translate(0, -50%) ;
 }
-.menu_burger.active::after{
+.burger.active::after{
     bottom: 50%;
     transform: rotate(45deg) translate(0, 50%);
 }
@@ -628,7 +628,7 @@ header{
 }
 
 @media screen and (max-width:800px) {
-    .menu_burger {
+    .burger {
         display: flex;
         justify-content: start;
         cursor: pointer;
@@ -735,9 +735,6 @@ header{
     }
     #form textarea{
         width: 300px;
-    }  
-     .menu_burger {
-        cursor: pointer;
     }
     .main_menu_nav_ul{
         margin-top: 5%;
@@ -875,9 +872,6 @@ header{
     #form textarea{
         width: 250px;
     }
-     .menu_burger {
-        cursor: pointer;
-    }
     .main_menu_nav_ul{
         top: 45%;
         margin-top: 7%;
@@ -903,10 +897,7 @@ header{
         margin:10px;
     }
 }
-@media screen and (max-width:400px ){
-    .menu_burger {
-        cursor: pointer;
-    }
+@media screen and (max-width:400px ){    
      .main_menu_nav_ul{
         top: 55%;
         margin-top: 10%;
@@ -984,9 +975,6 @@ header{
     #form button{
         margin-bottom: 25px;
     }
-    .menu_burger {
-        cursor: pointer;
-    }
     .main_menu_nav_ul{
     top: 65%;
     margin-top: 7%;
@@ -1015,7 +1003,7 @@ header{
       #form textarea{
         padding-top: 5px;
     }
-     .main_menu_nav_ul{
+    .main_menu_nav_ul{
         top: 70%;
         margin-top: 10%;
         padding: 0 40px;

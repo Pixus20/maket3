@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Макет 3</title>
 </head>
 <body>
-<div id="overlay"> </div>
+<div id="form_overlay"> </div>
         <div class="wrapper">
             <div class="header_form">
                 <header class="document_header">
@@ -35,7 +35,7 @@
                     <div id="form_close">
                         <button>&#215;</button>
                     </div>
-                    <form action="">    
+                    <form action="/submit_form" method="post">    
                         <div id="form">
                                 <h1>ЗВОРОТНІЙ ЗВ'ЯЗОК</h1>     
                                 <p>Ваше імя*</p> 
@@ -54,8 +54,8 @@
             </div>  
             </div>      
             <main class="document_main">
-                <menu class="main_menu">
-                   <div class="menu_burger">
+                <div class="main_menu">
+                   <div class="burger">
                         <span>
 
                         </span>
@@ -68,13 +68,12 @@
                             <li><a href="#">Прайс-лист</a></li>
                             <li><a href="#">Контакти</a></li>
                         </ul>
-                    </nav>
-                    
-                </menu>
+                    </nav>                    
+                </div>
                     <div class="slider_content">
                         <div class="slider">
-                        <div class="slide"><img src="images/img/slide1.jpg" ></div>
-                        <div class="slide"><img src="images/img/slide2.jpg" ></div>                       
+                        <div class="slide"><img src="images/img/slide1.jpg" alt="слайдер фото 1" ></div>
+                        <div class="slide"><img src="images/img/slide2.jpg" alt="слайдер фото 2" ></div>                       
                         </div>
                         <div class="slider_btn">
                         <button class="slider_btn-prew">&#8249;</button>
@@ -247,8 +246,8 @@
                 </div>
             </footer>
         </div>    
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script  src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

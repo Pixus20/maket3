@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('open_form').addEventListener('click', function(){
     var form=document.getElementById('form_all');
-    var overlay=document.getElementById('overlay');
+    var overlay=document.getElementById('form_overlay');
     form.style.display =(form.style.display === 'flex')? 'none' : 'flex';
     overlay.style.display =(overlay.style.display === 'flex')? 'none': 'flex';
     fadeIn(form)
@@ -27,7 +27,7 @@ function fadeIn(element) {
 
 document.getElementById('form_close').addEventListener('click', function(){
     var close=document.getElementById('form_all');
-    var overlay=document.getElementById('overlay');
+    var overlay=document.getElementById('form_overlay');
     var formDiv = document.getElementsByTagName('form')[0];
     close.style.display=(close.style.display === 'none')? 'flex' : 'none';
     overlay.style.display =(overlay.style.display === 'none')? 'flex': 'none';
@@ -64,7 +64,7 @@ function clearForm(formDiv) {
 
 
 /* menu burger*/ 
-document.querySelector('.menu_burger').addEventListener('click',function(){
+document.querySelector('.burger').addEventListener('click',function(){
     this.classList.toggle('active');
     document.querySelector('.main_menu_nav_ul').classList.toggle('open');
     }) 
