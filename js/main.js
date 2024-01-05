@@ -44,7 +44,6 @@ $(".slider_btn-prew").click(function () {
 $(".slider_btn-next").click(function () {
   $(".slider").slick("slickNext");
 });
-
 //DropDpwn list
 var scrollPosition = window.scrollY || document.documentElement.scrollTop;
 document.querySelectorAll(".content__left_itm").forEach(function (item) {
@@ -99,67 +98,13 @@ numberInput.addEventListener("blur", function (e) {
     e.target.style.boxShadow = "inset 0 0 5px red";
   }
 });
-//email input
-emailInput.addEventListener("input", function (e) {
-  var sanitizedValue = "";
-  for (var i = 0; i < e.target.value.length; i++) {
-    var char = e.target.value[i];
-    if (i !== 0 || /[a-zA-Z0-9]/.test(char)) {
-      sanitizedValue += char.replace(/[^a-zA-Z0-9._@-]/g, "");
-    }
-  }
-  sanitizedValue = sanitizedValue.slice(0, 50);
-  e.target.value = sanitizedValue;
-});
-//submit
-document.getElementById('form__send').addEventListener("click", function (event) {
-  var formElements = document.getElementById('form').elements;
-  var isPhoneNumberValid = false;
-  for (var i = 0; i < formElements.length; i++) {
-    var element = formElements[i];
-    if (element.tagName !== 'BUTTON' && element.value.trim() === '') {
-      element.style.boxShadow = "inset 0 0 5px red";
-    } else {
-      element.style.boxShadow = "none";
-    }
-    if (element.id === 'form__number') {
-      isPhoneNumberValid = element.value.trim().length === 13;
-      if (!isPhoneNumberValid) {
-        element.style.boxShadow = 'inset 0 0 5px red';
-      }
-    }
-  }
-  var isEmptyField = Array.from(formElements).some(function (element) {
-    return element.tagName !== 'BUTTON' && element.value.trim() === '';
-  });
-  if (isEmptyField || !isPhoneNumberValid) {
-    event.preventDefault();
-  } else {
-    event.preventDefault();
-    alert('Форма надіслана успішно!');
-    clearForm(document.getElementById('form'));
-    closeForm();
-  }
-});
-function clearForm(form) {
-  var formElements = form.elements;
-  for (var i = 0; i < formElements.length; i++) {
-    var element = formElements[i];
-    if (element.tagName !== 'BUTTON') {
-      element.value = ''; 
-      element.style.boxShadow = 'none';
-    }
-  }
-}
-document.getElementById("form_close").addEventListener("click", function (event) {
-  closeForm();
-});
+//close
 function closeForm() {
   var close = document.getElementById("form_all");
   var overlay = document.getElementById("form_overlay");
   var form = document.getElementById("form");
-  fadeOut(close, function() {
-      clearForm(form); 
+  fadeOut(close, function () {
+    clearForm(form);
     close.style.display = "none";
     overlay.style.display = "none";
   });
@@ -172,9 +117,95 @@ function fadeOut(element, callback) {
       element.style.opacity = opacity;
     } else {
       clearInterval(interval);
-      if (callback && typeof callback === 'function') {
+      if (callback && typeof callback === "function") {
         callback();
       }
     }
   }, 100);
 }
+function clearForm(form) {
+  var formElements = form.elements;
+  for (var i = 0; i < formElements.length; i++) {
+    var element = formElements[i];
+    if (element.tagName !== "BUTTON") {
+      element.value = "";
+      element.style.boxShadow = "none";
+    }
+  }
+}
+// Close form event listener
+document.getElementById("form_close").addEventListener("click", closeForm);
+// email 
+emailInput.addEventListener("input", function (e) {
+  var sanitizedValue = "";
+  for (var i = 0; i < e.target.value.length; i++) {
+    var char = e.target.value[i];
+    if (/[a-zA-Z0-9._%+-]/.test(char)) {
+      sanitizedValue += char;
+    }
+  }
+  sanitizedValue = sanitizedValue.slice(0, 50);
+  var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (emailRegex.test(sanitizedValue)) {
+    e.target.value = sanitizedValue;
+    e.target.style.boxShadow = "none";
+  } else {
+    e.target.style.boxShadow = "inset 0 0 5px red";
+  }
+});
+// submit
+document.getElementById("form__send").addEventListener("click", function (event) {
+  var formElements = document.getElementById("form").elements;
+  var isPhoneNumberValid = isPhoneNumberCorrect(document.getElementById("form__number").value);
+  var isEmailValid = isValidEmailAddress(document.getElementById("form__email").value);
+  for (var i = 0; i < formElements.length; i++) {
+    var element = formElements[i];
+    if (element.tagName !== "BUTTON" && element.value.trim() === "") {
+      element.style.boxShadow = "inset 0 0 5px red";
+    } else {
+      element.style.boxShadow = "none";
+    }
+    if (element.id === "form__number" && !isPhoneNumberValid) {
+      element.style.boxShadow = "inset 0 0 5px red";
+    }
+    if (element.id === "form__email") {
+      if (!isEmailValid) {
+        element.style.boxShadow = "inset 0 0 5px red";
+      } else {
+        element.style.boxShadow = "none";
+      }
+    }
+  }
+  var isEmptyField = Array.from(formElements).some(function (element) {
+    return element.tagName !== "BUTTON" && element.value.trim() === "";
+  });
+  if (isEmptyField || !isPhoneNumberValid || !isEmailValid) {
+    event.preventDefault();
+  } else {
+    event.preventDefault();
+    alert("Форма надіслана успішно!");
+    clearForm(document.getElementById("form"));
+    closeForm();
+  }
+});
+//valid email check
+function isValidEmailAddress(email) {
+  var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+//valid number check
+function isPhoneNumberCorrect(phoneNumber) {
+  return phoneNumber.trim().length === 13;
+  }
+  var isEmptyField = Array.from(formElements).some(function (element) {
+    return element.tagName !== "BUTTON" && element.value.trim() === "";
+  });
+  if (isEmptyField || !isPhoneNumberValid) {
+    event.preventDefault();
+  } else {
+    event.preventDefault();
+    alert("Форма надіслана успішно!");
+    clearForm(document.getElementById("form"));
+    closeForm();
+  }
+  

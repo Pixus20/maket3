@@ -910,7 +910,7 @@ header {
   }
   .content_right_text {
     width: auto;
-    margin: 0;
+    margin: 20px;
   }
   .content_right_text p {
     width: 250px;
