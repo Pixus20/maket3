@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var form = document.getElementById("form_all");
   form.style.opacity = "0";
 });
-
 document.getElementById("open_form").addEventListener("click", function () {
   var form = document.getElementById("form_all");
   var overlay = document.getElementById("form_overlay");
@@ -11,7 +10,6 @@ document.getElementById("open_form").addEventListener("click", function () {
   overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
   fadeIn(form);
 });
-
 function fadeIn(element) {
   var opacity = 0;
   var interval = setInterval(function () {
@@ -23,46 +21,11 @@ function fadeIn(element) {
     }
   }, 100);
 }
-
-document.getElementById("form_close").addEventListener("click", function () {
-  var close = document.getElementById("form_all");
-  var overlay = document.getElementById("form_overlay");
-  var formDiv = document.getElementsByTagName("form")[0];
-  close.style.display = close.style.display === "none" ? "flex" : "none";
-  overlay.style.display = overlay.style.display === "none" ? "flex" : "none";
-  fadeOut(close);
-  clearForm(formDiv);
-});
-
-function fadeOut(element) {
-  var opacity = 1;
-  var interval = setInterval(function () {
-    if (opacity > 0) {
-      opacity -= 1;
-      element.style.opacity = opacity;
-    } else {
-      clearInterval(interval);
-    }
-  }, 100);
-}
-
-function clearForm(formDiv) {
-  var formInputs = formDiv.querySelectorAll("input, textarea");
-  formInputs.forEach(function (input) {
-    input.value = "";
-  });
-  var errorBlocks = formDiv.querySelectorAll(".error");
-  errorBlocks.forEach(function (errorBlock) {
-    errorBlock.parentNode.removeChild(errorBlock);
-  });
-}
-
 /* menu burger*/
 document.querySelector(".burger").addEventListener("click", function () {
   this.classList.toggle("active");
   document.querySelector(".main_menu_nav_ul").classList.toggle("open");
 });
-
 /* slick slider*/
 $(".slider").slick({
   slidesToShow: 1,
@@ -78,17 +41,17 @@ $(".slider").slick({
 $(".slider_btn-prew").click(function () {
   $(".slider").slick("slickPrev");
 });
-
 $(".slider_btn-next").click(function () {
   $(".slider").slick("slickNext");
 });
 
 //DropDpwn list
 var scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
 document.querySelectorAll(".content__left_itm").forEach(function (item) {
   item.addEventListener("click", function (event) {
-    event.preventDefault();
+    event.preventDefault();   
+    window.scrollBy(0, 1);    
+    scrollPosition = window.scrollY || document.documentElement.scrollTop;    
     window.scrollTo(0, scrollPosition);
     this.classList.toggle("active");
     var dropdownList = this.querySelector(".content__dropdown__list");
@@ -97,86 +60,121 @@ document.querySelectorAll(".content__left_itm").forEach(function (item) {
     }
   });
 });
-
 //valid
 var form = document.getElementById("form");
-var phoneInput = document.getElementById("form__number");
+var nameInput = document.getElementById("form__text");
+var numberInput = document.getElementById("form__number");
 var emailInput = document.getElementById("form__email");
-
-form.addEventListener("submit", function (event) {
-  var emailValue = emailInput.value;
-  if (!containsDigits(emailValue)) {
-    alert("Email повинен містити символ @!");
-    event.preventDefault();
+var massageInput = document.getElementById("form__message");
+//text input
+nameInput.addEventListener('input', function(e){
+  var sanitizedValue = e.target.value.replace(/[^a-zA-Z\u0400-\u04FFёЁ']/g, "");
+    sanitizedValue = sanitizedValue.slice(0, 50);
+    e.target.value = sanitizedValue;
+});
+//number input
+numberInput.addEventListener("input", function (e) {
+  var sanitizedValue = e.target.value.replace(/[^0-9+]/g, "");
+  sanitizedValue = sanitizedValue.slice(0, 13);
+  e.target.value = sanitizedValue;
+  if (sanitizedValue.length === 13) {
+    e.target.style.boxShadow = "none";
+  } else {
+    e.target.style.boxShadow = "inset 0 0 5px red";
   }
 });
-
-phoneInput.addEventListener("input", function (event) {
-  var inputValue = event.target.value;
-  var sanitizedValue = inputValue.replace(/[^0-9+]/g, "");
-  event.target.value = sanitizedValue;
-});
-
-nameInput.addEventListener("input", function (event) {
-  var inputValue = event.target.value;
-  var sanitizedValue = inputValue.replace(/[0-9]/g, "");
-  event.target.value = sanitizedValue;
-});
-
-form.addEventListener("submit", function (event) {
-  var phoneValue = phoneInput.value;
-  var nameValue = nameInput.value;
-  if (!isValidPhoneNumber(phoneValue)) {
-    alert('Телефон повинен містити тільки цифри та знак "+"!');
-    event.preventDefault();
-  }
-  if (!containsOnlyLetters(nameValue)) {
-    alert("Ім'я повинно містити тільки букви!");
-    event.preventDefault();
+numberInput.addEventListener("focus", function (e) {
+  if (!e.target.value.startsWith("+38")) {
+    e.target.value = "+38" + e.target.value;
   }
 });
-function isValidPhoneNumber(input) {
-  return /^[0-9+]+$/.test(input);
-}
-function containsOnlyLetters(input) {
-  return /^[a-zA-Zа-яА-ЯЁё]+$/.test(input);
-}
-
-var inputElements = document.querySelectorAll("input");
-inputElements.forEach(function (input) {
-  input.addEventListener("input", function () {
-    if (input.value.trim() !== "") {
-      input.style.boxShadow = "none";
+numberInput.addEventListener("blur", function (e) {
+  var inputValue = e.target.value;
+  if (inputValue.length < 13) {
+    e.target.value = "+38" + "".repeat(13 - inputValue.length);
+  } 
+  if (inputValue.length === 13) {
+    e.target.style.boxShadow = "none";
+  } else {
+    e.target.style.boxShadow = "inset 0 0 5px red";
+  }
+});
+//email input
+emailInput.addEventListener("input", function (e) {
+  var sanitizedValue = "";
+  for (var i = 0; i < e.target.value.length; i++) {
+    var char = e.target.value[i];
+    if (i !== 0 || /[a-zA-Z0-9]/.test(char)) {
+      sanitizedValue += char.replace(/[^a-zA-Z0-9._@-]/g, "");
     }
-  });
+  }
+  sanitizedValue = sanitizedValue.slice(0, 50);
+  e.target.value = sanitizedValue;
 });
-var textElements = document.querySelectorAll("textarea");
-textElements.forEach(function (textarea) {
-  textarea.addEventListener("input", function () {
-    if (textarea.value.trim() !== "") {
-      textarea.style.boxShadow = "none";
-    }
-  });
-});
-
-var inputElements = document.querySelectorAll("input");
-inputElements.forEach(function (input) {
-  input.addEventListener("input", function () {
-    if (input.value.trim() !== "") {
-      input.style.boxShadow = "none";
+//submit
+document.getElementById('form__send').addEventListener("click", function (event) {
+  var formElements = document.getElementById('form').elements;
+  var isPhoneNumberValid = false;
+  for (var i = 0; i < formElements.length; i++) {
+    var element = formElements[i];
+    if (element.tagName !== 'BUTTON' && element.value.trim() === '') {
+      element.style.boxShadow = "inset 0 0 5px red";
     } else {
-      input.style.boxShadow = "inset 0 0 5px red";
+      element.style.boxShadow = "none";
     }
+    if (element.id === 'form__number') {
+      isPhoneNumberValid = element.value.trim().length === 13;
+      if (!isPhoneNumberValid) {
+        element.style.boxShadow = 'inset 0 0 5px red';
+      }
+    }
+  }
+  var isEmptyField = Array.from(formElements).some(function (element) {
+    return element.tagName !== 'BUTTON' && element.value.trim() === '';
   });
+  if (isEmptyField || !isPhoneNumberValid) {
+    event.preventDefault();
+  } else {
+    event.preventDefault();
+    alert('Форма надіслана успішно!');
+    clearForm(document.getElementById('form'));
+    closeForm();
+  }
 });
-
-var textElements = document.querySelectorAll("textarea");
-textElements.forEach(function (textarea) {
-  textarea.addEventListener("input", function () {
-    if (textarea.value.trim() !== "") {
-      textarea.style.boxShadow = "none";
+function clearForm(form) {
+  var formElements = form.elements;
+  for (var i = 0; i < formElements.length; i++) {
+    var element = formElements[i];
+    if (element.tagName !== 'BUTTON') {
+      element.value = ''; 
+      element.style.boxShadow = 'none';
+    }
+  }
+}
+document.getElementById("form_close").addEventListener("click", function (event) {
+  closeForm();
+});
+function closeForm() {
+  var close = document.getElementById("form_all");
+  var overlay = document.getElementById("form_overlay");
+  var form = document.getElementById("form");
+  fadeOut(close, function() {
+      clearForm(form); 
+    close.style.display = "none";
+    overlay.style.display = "none";
+  });
+}
+function fadeOut(element, callback) {
+  var opacity = 1;
+  var interval = setInterval(function () {
+    if (opacity > 0) {
+      opacity -= 0.1;
+      element.style.opacity = opacity;
     } else {
-      textarea.style.boxShadow = "inset 0 0 5px red";
+      clearInterval(interval);
+      if (callback && typeof callback === 'function') {
+        callback();
+      }
     }
-  });
-});
+  }, 100);
+}
